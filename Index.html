@@ -1,0 +1,54 @@
+produtos = {}
+
+def adicionar_produto(nome, valor):
+  produtos[nome] = valor
+  print(f"O produto {nome} foi adicionado com o valor de R${valor:.2f}.")
+
+def calcular_total():
+  total = 0
+  for nome, valor in produtos.items():
+    total += valor
+  return total
+
+def imprimir_produtos():
+  print("Produtos:")
+  for nome, valor in produtos.items():
+    print(f" - {nome}: R${valor:.2f}")
+
+def menu():
+  print("""
+Calculadora de Produtos
+
+Escolha uma opção:
+1. Adicionar produto
+2. Remover produto
+3. Ver produtos
+4. Calcular total
+5. Sair
+""")
+
+opcao = 0
+while opcao != 5:
+  menu()
+  opcao = int(input("Opção: "))
+
+  if opcao == 1:
+    nome = input("Nome do produto: ")
+    valor = float(input("Valor do produto: "))
+    adicionar_produto(nome, valor)
+  elif opcao == 2:
+    nome = input("Nome do produto: ")
+    if nome in produtos:
+      del produtos[nome]
+      print(f"O produto {nome} foi removido.")
+    else:
+      print(f"O produto {nome} não foi encontrado.")
+  elif opcao == 3:
+    imprimir_produtos()
+  elif opcao == 4:
+    total = calcular_total()
+    print(f"O total é de R${total:.2f}.")
+  elif opcao == 5:
+    print("Saindo da calculadora de produtos...")
+  else:
+    print("Opção inválida.")
